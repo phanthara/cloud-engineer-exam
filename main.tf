@@ -56,7 +56,7 @@ resource "aws_security_group" "web_sg" {
 
 # EC2 Instance
 resource "aws_instance" "web" {
-  ami                         = "ami-0ba62214afa52bec4" # Amazon Linux 2 (ap-southeast-1)
+  ami                         = "ami-03a6eaae9938c858c" # Amazon Linux 2 (ap-southeast-1)
   instance_type               = "t2.micro"
   subnet_id                   = data.aws_subnet.default_subnet.id
   key_name                    = aws_key_pair.deployer.key_name
