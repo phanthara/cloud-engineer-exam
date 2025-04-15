@@ -8,14 +8,16 @@ data "aws_vpc" "default" {
 }
 
 # Subnet
-data "aws_subnet_ids" "default" {
-  vpc_id = data.aws_vpc.default.id
+data "aws_subnets" "default_subnets" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.default.id]
+  }
 }
 
 data "aws_subnet" "default_subnet" {
-  id = data.aws_subnet_ids.default.ids[0] 
+  id = data.aws_subnets.default_subnets.ids[0]
 }
-
 # Key Pair 
 resource "aws_key_pair" "deployer" {
   key_name   = "terraform-key"
